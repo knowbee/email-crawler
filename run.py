@@ -1,7 +1,7 @@
 import argparse
 import re
 import sys
-from urllib.request import urlopen
+import requests
 
 class Crawler(object):
   
@@ -18,9 +18,8 @@ class Crawler(object):
   
   @staticmethod
   def request(url):
-    
-    response = urlopen(url)
-    return response.read().decode('utf-8')
+    data = requests.get(url, headers={'User-Agent': 'Mozilla/5.0'})
+    return data.text
 
   @staticmethod
   def process(data):
@@ -28,8 +27,6 @@ class Crawler(object):
     for email in email_regex.findall(data):
       yield email
       
-  
-  
 def main():
   argparser = argparse.ArgumentParser()
   argparser.add_argument('--urls', dest='urls', required=True, help='Emails separated with comma.')
