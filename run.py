@@ -7,6 +7,7 @@ class Crawler(object):
   
   def __init__(self, urls):
     self.urls = urls.split(',')
+
   
   def crawl(self):
     for url in self.urls:
@@ -23,7 +24,8 @@ class Crawler(object):
 
   @staticmethod
   def process(data):
-    for email in re.findall(r'(\w+@\w+\.com)', data):
+    email_regex = re.compile('([A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4})', re.IGNORECASE)
+    for email in email_regex.findall(data):
       yield email
       
   
