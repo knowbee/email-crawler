@@ -29,7 +29,7 @@ class Crawler(object):
       
 def main():
   argparser = argparse.ArgumentParser()
-  argparser.add_argument('--urls', dest='urls', required=True, help='Emails separated with comma.')
+  argparser.add_argument('--urls', dest='urls', required=True, help='Domains/websites separated with comma.')
   
   parsed_args = argparser.parse_args()
   
